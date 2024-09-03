@@ -24,10 +24,10 @@ class ML0CustomRoutes[F[_]: Async: JsonSerializer](calculatedStateService: Check
 ) extends MetagraphPublicRoutes[F] {
 
   protected val routes: HttpRoutes[F] = HttpRoutes.of[F] {
-    case GET -> Root / "images" / "all" =>
+    case GET -> Root / "images" =>
       context.getOnChainState.map(_.map(_.images.toList)).flatMap(prepareResponse(_))
 
-    case GET -> Root / "rewards" / "all" =>
+    case GET -> Root / "rewards" =>
       calculatedStateService.get
         .map(_.state.totalRewards.toList.asRight[DataApplicationValidationError])
         .flatMap(prepareResponse(_))
@@ -46,7 +46,7 @@ class ML0CustomRoutes[F[_]: Async: JsonSerializer](calculatedStateService: Check
           BadRequest(s"Invalid address format: $error")
       }
 
-    case GET -> Root / "pending-rewards" / "all" =>
+    case GET -> Root / "pending-rewards" =>
       calculatedStateService.get
         .map(_.state.pendingRewards.toList.asRight[DataApplicationValidationError])
         .flatMap(prepareResponse(_))

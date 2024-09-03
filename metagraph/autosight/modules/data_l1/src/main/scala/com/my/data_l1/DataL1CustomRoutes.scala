@@ -26,29 +26,10 @@ class DataL1CustomRoutes[F[_]: Async: JsonSerializer](implicit context: L1NodeCo
         }
         .flatMap(prepareResponse(_))
 
-    case GET -> Root / "images" / "all" =>
-      context.getOnChainState.map(_.map(_.images.toList)).flatMap(prepareResponse(_))
-
     case GET -> Root / "snapshot" / "global" / "latest" =>
       context.getLatestGlobalSnapshot.flatMap(prepareResponse(_))
 
     case GET -> Root / "snapshot" / "currency" / "latest" =>
       context.getLatestCurrencySnapshot.flatMap(prepareResponse(_))
-  }
-}
-
-object DataL1CustomRoutes {
-
-  object Errors {
-
-    @derive(decoder, encoder)
-    case class EventIdNotFound(eventId: String) extends DataApplicationValidationError {
-      val message: String = s"Event ID $eventId was not found"
-    }
-
-    @derive(decoder, encoder)
-    case class EventRecordNotFound(eventId: String, nonce: Long) extends DataApplicationValidationError {
-      val message: String = s"Event Record with ID $eventId and nonce $nonce was not found"
-    }
   }
 }
