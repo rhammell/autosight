@@ -50,7 +50,7 @@ scripts/hydra start-genesis
 
 When this process is complete, the terminal will display metagraph information, including the URLs for each metagraph node layer.
 
-###Testing 
+### Testing 
 Test sending custom data to the deployed metagraph using the included `send_data_transaction.js` script. This script creates dummy image record data, cryptographically signs it, and sends the structured data to the metagraph's data L1 layer to be processed.
 
 From the `euclid-development-environment` directory, navigate into the `testing_scripts` directory: 
@@ -111,6 +111,17 @@ python3 server.py
 
 The server runs on the default port (5050) and is now available at `http://localhost:5050`.
 
+
+## Public URL Requirement
+The AutoSight Android app relies on connections to the metagraph nodes and image upload server. However, since the app is intended to be used while in a vehicle, the phone will not be connected to the same local network as the host machine running the metagraph and image server, and must access them through public URLs. 
+
+This can be accomplished by either deploying the metagraph and image server to a cloud service provider, or enabling port forwarding on the host machine's local network router. 
+
+If using port forwarding, configure your router to forward inbound requests from its public IP address to the appropriate ports on your local machine. For example:
+
+- http://<public-ip>:5050 → http://localhost:5050 (image server)
+- http://<public-ip>:9200 → http://localhost:9200 (metagraph L0)
+- http://<public-ip>:9400 → http://localhost:9400 (metagraph Data L1)
 
 ## Android App
 Open Android Studio, select File->Open, select the `android_app/AutoSight` directory from the `autosight` cloned repository. 
