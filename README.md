@@ -14,27 +14,27 @@ Install the following required dependencies:
 - [Android Studio](https://developer.android.com/studio)
 
 ## Image Server
-In a new terminal window, navigate to the `image_upload` directory within the repository:
+The image server is built using the Python Flask microframework. Launching the server establishes an `/upload` endpoint, which accepts images through HTTP requests and saves them locally to the disk.
+
+In a new terminal window, navigate to the `image_upload` directory within the project repository:
 ```bash
-# Navigate into the image_upload directory
 cd autosight/image_upload
 ```
 
 Install the required Python packages:
 ```bash
-# Install Python packages
 pip3 install -r requirements.txt
 ```
 
-Launch the image upload server: 
+Launch the server: 
 ```bash
-# Launch server
 python3 server.py
 ```
 
-
+The server runs on the fault port (5050) and is now available at `http://localhost:5050`.
 
 ## Metagraph
+
 
 ## Android App
 
