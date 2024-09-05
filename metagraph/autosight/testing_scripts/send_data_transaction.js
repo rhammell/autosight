@@ -86,7 +86,7 @@ const sendDataTransactionsUsingUrls = async (
 };
 
 const sendDataTransaction = async () => {
-const globalL0Url = ":your_global_l0_node_url'";
+const globalL0Url = ":your_global_l0_node_url";
   const metagraphL1DataUrl = ":your_metagraph_l1_data_url";
 
   await sendDataTransactionsUsingUrls(globalL0Url, metagraphL1DataUrl);
