@@ -1,0 +1,20 @@
+.leaflet-div-icon {
+  background: none;
+  border: none;
+}
+
+.iconLabel {
+  background-color: #4a5568; 
+  color: white; 
+  padding: 1px 7px;
+  border-radius: 25px; 
+  margin-top: -3px; 
+  width: fit-content;
+}
+
+.iconActive {
+  background-color: yellow; 
+  color: #4a5568; 
+  font-weight: bold;
+  border: 1px solid #4a5568;
+}
