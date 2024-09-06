@@ -111,7 +111,6 @@ python3 server.py
 
 The server runs on the default port (5050) and is now available at `http://localhost:5050`.
 
-
 ## Public URL Requirement
 The AutoSight Android app relies on connections to the metagraph nodes and image upload server. However, since the app is intended to be used while in a vehicle, the phone will not be connected to the same local network as the host machine running the metagraph and image server, and must access them through public URLs. 
 
@@ -131,9 +130,9 @@ In the upper left cornder of the Project tool window, click the 'Project' dropdo
 Open the `AppConfig` file within the code editor by double cliking it in the file tree: app/kotlin+java/com.example.autosight/AppConfig
 
 Update the following placeholder values in `AppConfig`, and save the file when complete: 
-- `IMAGE_SERVER_ADDRESS`:
-- `METAGRAPH_L0_ADDRESS`: 
-- `METAGRAPH_DATA_L1_ADDRESS`:
+- `IMAGE_SERVER_ADDRESS`: Public URL of image server (ex. `http://<public-ip>:5050`)
+- `METAGRAPH_L0_ADDRESS`: Public URL of metagraph L0 layer (ex. `http://<public-ip>:9200`)
+- `METAGRAPH_DATA_L1_ADDRESS`: Public URL of metagraph Data L1 layer (ex. `http://<public-ip>:9400`)
 
 Synch the project by selecting File → Sync Project with Gradle Files. Then, bulid the project by selecting Build → Make Project. 
 
@@ -144,5 +143,26 @@ Selct Run → Select Device, and select the connected device.
 Select Run → Run 'app' to install and run the AutoSight app on the connected Android phone. The app will remain installed on the device after it is disconnected. 
 
 ## Web App
+In a new terminal window, navigate into the cloned `autosight` directory, then into the `web_app/autosight-explorer` subdirectory: 
 
-# Usage
+```bash
+cd autosight
+cd web_app/autosight-explorer
+```
+
+Install the required Node JS packages: 
+
+```bash
+npm i
+```
+
+In a code editor, open the `.env` file, and update the following placeholder value, saving the file when complete: 
+- `REACT_APP_AUTOSIGHT_METAGRAPH_LO_IMAGES_URL`: ***
+
+Start the development server: 
+
+```bash
+npm start
+```
+
+The AutoSight web application viewable by browsing to the default server address `http://localhost:3000`.

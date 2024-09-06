@@ -380,7 +380,7 @@ fun HomePage(
 
             // Rewards Display
             AutoResizingText(
-                text = formatReward(rewards ?: BigInteger.ZERO),
+                text = rewards?.let { formatReward(it) } ?: "-",
                 maxFontSize = 130.sp,
                 color = if (errorMessage == null) DarkColor else MaterialTheme.colorScheme.error,
                 fontWeight = FontWeight.Bold,
