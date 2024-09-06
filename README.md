@@ -1,24 +1,15 @@
 # autosight
 A metagraph powered Android app that allows users to earn crypto tokens while driving
 
-# Overview Video
-
 # Project Setup
-The following instructions cover the setup and configuration process for each AutoSight component. 
+Follow the instructions below to set up and configure each of the AutoSight components.
 
 ## Dependencies
-Install the following required dependencies:
+Install the required dependencies:
 - [Python3](https://www.python.org/downloads/)
 - [Node JS](https://nodejs.org/en)
 - [Euclid Development Enivonment dependencies](https://docs.constellationnetwork.io/sdk/guides/quick-start/#install-dependencies)
 - [Android Studio](https://developer.android.com/studio) with an Android phone
-
-## Clone
-Clone the `autosight` code repository to your local machine: 
-
-```bash
-git clone https://github.com/rhammell/autosight.git
-```
 
 ## Metagraph
 Follow the Euclid Development Environment [quickstart guide](https://docs.constellationnetwork.io/sdk/guides/quick-start) to clone and setup the development environment, including the steps to configure docker and a github access token.
@@ -89,6 +80,13 @@ scripts/hydra stop
 scripts/hydra start-genesis
 ```
 
+## Clone AutoSight Repository
+Clone the `autosight` code repository to your local machine: 
+
+```bash
+git clone https://github.com/rhammell/autosight.git
+```
+
 ## Image Server
 In a new terminal window, navigate into the cloned `autosight` directory, then into the `image_upload` subdirectory: 
 
@@ -157,7 +155,7 @@ npm i
 ```
 
 In a code editor, open the `.env` file, and update the following placeholder value, saving the file when complete: 
-- `REACT_APP_AUTOSIGHT_METAGRAPH_LO_IMAGES_URL`: ***
+- `REACT_APP_AUTOSIGHT_METAGRAPH_LO_IMAGES_URL`: The `/data-application/images` endpoint of a metagraph node's Metagraph L0 URL (ex. `http://localhost:9200/data-application/images`) 
 
 Start the development server: 
 
