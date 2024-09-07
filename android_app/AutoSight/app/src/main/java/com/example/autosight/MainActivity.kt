@@ -78,7 +78,8 @@ import java.math.RoundingMode
 import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.material3.LinearProgressIndicator
-
+import androidx.compose.ui.platform.LocalConfiguration
+import android.content.res.Configuration
 
 class MainActivity : ComponentActivity() {
     private lateinit var devicePrivateKey: String
@@ -327,6 +328,9 @@ fun HomePage(
         }
     }
 
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -337,14 +341,14 @@ fun HomePage(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 24.dp),
+                .padding(bottom = if (isLandscape) 8.dp else 24.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Auto",
                 style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 40.sp,
+                    fontSize = if (isLandscape) 30.sp else 40.sp,
                     fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold
                 ),
@@ -353,7 +357,7 @@ fun HomePage(
             Text(
                 text = "Sight",
                 style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 40.sp,
+                    fontSize = if (isLandscape) 30.sp else 40.sp,
                     fontWeight = FontWeight.Bold
                 ),
                 color = TanColor
@@ -361,56 +365,109 @@ fun HomePage(
         }
 
         // Centered content
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Wallet Address
-            Text(
-                text = "${walletAddress.take(5)}...${walletAddress.takeLast(5)}",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontSize = 30.sp
-                ),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(bottom = 18.dp)
-            )
+        if (isLandscape) {
+            Row(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                // Wallet Address
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "${walletAddress.take(5)}...${walletAddress.takeLast(5)}",
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontSize = 24.sp
+                        ),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = "Wallet Address",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontSize = 16.sp
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                }
 
-            // Rewards Display
-            AutoResizingText(
-                text = rewards?.let { formatReward(it) } ?: "-",
-                maxFontSize = 130.sp,
-                color = if (errorMessage == null) DarkColor else MaterialTheme.colorScheme.error,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.fillMaxWidth()
-            )
+                // Rewards Display
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    AutoResizingText(
+                        text = rewards?.let { formatReward(it) } ?: "-",
+                        maxFontSize = 80.sp,
+                        color = if (errorMessage == null) DarkColor else MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.width(200.dp)
+                    )
+                    Text(
+                        text = "Lifetime AUTO rewards",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontSize = 16.sp
+                        ),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Wallet Address
+                Text(
+                    text = "${walletAddress.take(5)}...${walletAddress.takeLast(5)}",
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        fontSize = 30.sp
+                    ),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(bottom = 18.dp)
+                )
 
+                // Rewards Display
+                AutoResizingText(
+                    text = rewards?.let { formatReward(it) } ?: "-",
+                    maxFontSize = 130.sp,
+                    color = if (errorMessage == null) DarkColor else MaterialTheme.colorScheme.error,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Text(
+                    text = "Lifetime AUTO rewards",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontSize = 20.sp
+                    ),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+        }
+
+        if (errorMessage != null) {
             Text(
-                text = "Lifetime AUTO rewards",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = 20.sp
-                ),
+                text = "Metagraph connection failed",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.error,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
-
-            if (errorMessage != null) {
-                Text(
-                    text = "Metagraph connection failed",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.error,
-                    textAlign = TextAlign.Center
-                )
-            }
         }
 
         // New Trip Button
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(vertical = if (isLandscape) 8.dp else 16.dp),
             contentAlignment = Alignment.Center
         ) {
             FloatingActionButton(

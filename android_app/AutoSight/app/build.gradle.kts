@@ -90,4 +90,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.compose.runtime:runtime:1.4.3")
     implementation("androidx.compose.material:material-icons-extended:1.4.3")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 }
