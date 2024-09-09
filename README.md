@@ -36,8 +36,7 @@ cd euclid-development-environment
 Install the `autosight` project from this repository into the development environment:  
 
 ```bash
-scripts/hydra install-template autosight --repo https://github.com/rhammell/autosight --path metagr
-aph
+scripts/hydra install-template autosight --repo https://github.com/rhammell/autosight --path metagraph
 ```
 
 Build the `autosight` project containers: 
