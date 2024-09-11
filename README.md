@@ -59,7 +59,7 @@ Test sending custom data to the deployed metagraph using the included `send_data
 From the `euclid-development-environment` directory, navigate into the `testing_scripts` directory: 
 
 ```bash
-cd /source/project/autosight/testing_scripts
+cd source/project/autosight/testing_scripts
 ```
 
 Install the required Node JS packages: 
