@@ -83,7 +83,8 @@ The script will output the hash value returned by the metagraph after successful
 
 In a browser, navigate to the following custom endpoints to view the metagraph's state:
 - `<:your_metagraph_L0_url>/data-application/images`: Returns a list of image records, stored in the metagraph's on chain state
-- `<:your_metagraph_L0_url>/data-application/rewards`: Returns a list of token rewards records, stored in the metagraph's calculated state. 
+- `<:your_metagraph_L0_url>/data-application/pending-rewards`: Returns a list of pending rewards records, stored in the metagraph's calculated state. 
+- `<:your_metagraph_L0_url>/data-application/rewards`: Returns a list of addresses and their total minted tokens, stored in the metagraph's calculated state. 
 
 After testing is complete, restart the metagraph from its genesis snapshot to remove the dummy data: 
 
