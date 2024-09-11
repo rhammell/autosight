@@ -11,6 +11,8 @@ The system is comprised of four components:
 
 4. **Web App**: Customers in demand for road images can view them on the AutoSight web app, which features a menu of image previews and interactive map. 
 
+See further project details on [Devpost](https://devpost.com/software/autosight-evckf2).
+
 # Demo Video
 [![Video](https://img.youtube.com/vi/e6pI9gV_5bQ/0.jpg)](https://www.youtube.com/watch?v=e6pI9gV_5bQ)
 
